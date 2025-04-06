@@ -1,99 +1,63 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import AdminLayout from "@/components/AdminLayout";
 
-type Vendor = {
-  id: number;
-  name: string;
-  allowed: boolean;
-};
-
 const Dashboard = () => {
-  const [vendors, setVendors] = useState<Vendor[]>([]);
-  const [totalVendors, setTotalVendors] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [totalVendors, setTotalVendors] = useState(0);
+  const [totalCategories, setTotalCategories] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
 
-  // Fetch vendors from API
   useEffect(() => {
-    const fetchVendors = async () => {
+    // Simulated fetch - replace with your real APIs
+    const fetchStats = async () => {
       try {
-        const res = await fetch("/api/vendors");
-        if (!res.ok) throw new Error("Failed to fetch vendors");
-        
-        const data = await res.json();
-        setVendors(data.vendors);
-        setTotalVendors(data.total);
+        // Example: Replace these with actual API calls if available
+        setTotalVendors(25);
+        setTotalCategories(30);
+        setTotalProducts(24);
       } catch (error) {
-        console.error("Error fetching vendors:", error);
+        console.error("Error fetching stats:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchVendors();
+    fetchStats();
   }, []);
 
-  const handleAllow = (id: number) => {
-    setVendors((prevVendors) =>
-      prevVendors.map((vendor) =>
-        vendor.id === id ? { ...vendor, allowed: !vendor.allowed } : vendor
-      )
-    );
-  };
-
-  const handleDelete = (id: number) => {
-    setVendors((prevVendors) => prevVendors.filter((vendor) => vendor.id !== id));
-    setTotalVendors((prev) => prev - 1); // Update total count on delete
-  };
- 
   return (
     <AdminLayout>
-    <div className="flex min-h-screen bg-gray-100">
-      <main className="p-6 w-full max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
+      <div className="flex min-h-screen bg-gray-100">
+        <main className="p-6 w-full max-w-5xl mx-auto">
+          <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
-        <Card className="shadow-lg mb-4">
-          <CardContent className="p-4">
-            <h2 className="text-lg font-semibold">Total Vendors: {loading ? "Loading..." : totalVendors}</h2>
-          </CardContent>
-        </Card>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Card className="shadow-lg">
+              <CardContent className="p-4">
+                <h2 className="text-lg font-semibold text-gray-600">Total Vendors</h2>
+                <p className="text-2xl font-bold">{loading ? "..." : totalVendors}</p>
+              </CardContent>
+            </Card>
 
-        <Card className="shadow-lg">
-          <CardContent className="p-5">
-            <h2 className="text-lg font-semibold mb-4">Vendors</h2>
-            {loading ? (
-              <p>Loading vendors...</p>
-            ) : vendors.length === 0 ? (
-              <p className="text-gray-500">No vendors available.</p>
-            ) : (
-              vendors.map((vendor) => (
-                <div key={vendor.id} className="flex justify-between items-center py-3 border-b last:border-none">
-                  <span className="text-lg font-medium">{vendor.name}</span>
-                  <div>
-                    <Button
-                      variant={vendor.allowed ? "destructive" : "default"}
-                      onClick={() => handleAllow(vendor.id)}
-                      className="mr-2"
-                    >
-                      {vendor.allowed ? "Disallow" : "Allow"}
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      onClick={() => handleDelete(vendor.id)}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-              ))
-            )}
-          </CardContent>
-        </Card>
-      </main>
-    </div>
+            <Card className="shadow-lg">
+              <CardContent className="p-4">
+                <h2 className="text-lg font-semibold text-gray-600">Total Categories</h2>
+                <p className="text-2xl font-bold">{loading ? "..." : totalCategories}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-lg">
+              <CardContent className="p-4">
+                <h2 className="text-lg font-semibold text-gray-600">Total Products</h2>
+                <p className="text-2xl font-bold">{loading ? "..." : totalProducts}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </main>
+      </div>
     </AdminLayout>
   );
 };

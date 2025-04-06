@@ -21,6 +21,12 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+			 // Custom teal shades
+			 teal: {
+				light: "#5eead4",
+				DEFAULT: "#14b8a6",  // or just use 'teal'
+				dark: "#0d9488",
+			  },
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
