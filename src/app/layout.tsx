@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Admin",
-  description: "Admin panel for managing vendors, products, and categories.",
+  title: "Admin"
 };
 
 export default function RootLayout({
