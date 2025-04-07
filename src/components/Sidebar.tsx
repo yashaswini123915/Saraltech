@@ -3,15 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Package, List, Users, RefreshCw } from "lucide-react";
+import {
+  LayoutDashboard,
+  Store ,
+  List,
+  Users,
+  RefreshCw,
+  Bell,
+  LogOut,
+  UserCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const sidebarLinks = [
   { href: "/", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
-  { href: "/", label: "Products", icon: <Package className="w-5 h-5" /> },
+  { href: "/", label: " Shops", icon: <Store  className="w-5 h-5" /> },
   { href: "/", label: "Categories", icon: <List className="w-5 h-5" /> },
   { href: "/", label: "Vendors", icon: <Users className="w-5 h-5" /> },
-  { href: "/", label: "Swtich Account", icon: <RefreshCw className="w-5 h-5" /> },
+  { href: "/", label: "Switch Account", icon: <RefreshCw className="w-5 h-5" /> },
 ];
 
 export default function Sidebar() {
@@ -19,7 +28,22 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 bg-teal-dark text-white p-4 flex flex-col h-screen">
-      <h1 className="text-xl font-bold mb-6">Admin Panel</h1>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <UserCircle className="w-8 h-8 text-white" />
+          <span className="font-semibold">Admin</span>
+        </div>
+
+        <div className="relative">
+          <Bell className="w-6 h-6" />
+          <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs px-1 rounded-full">
+            5
+          </span>
+        </div>
+      </div>
+
+      {/* Navigation */}
       <nav className="flex-1">
         {sidebarLinks.map(({ href, label, icon }) => (
           <Link key={href} href={href}>
@@ -36,6 +60,12 @@ export default function Sidebar() {
           </Link>
         ))}
       </nav>
+
+      {/* Logout Button */}
+      <Button variant="ghost" className="text-white justify-start">
+        <LogOut className="w-5 h-5" />
+        <span className="ml-3">Logout</span>
+      </Button>
     </aside>
   );
 }
