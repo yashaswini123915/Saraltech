@@ -16,11 +16,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const sidebarLinks = [
-  { href: "/", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
-  { href: "/", label: " Shops", icon: <Store  className="w-5 h-5" /> },
-  { href: "/", label: "Categories", icon: <List className="w-5 h-5" /> },
-  { href: "/", label: "Vendors", icon: <Users className="w-5 h-5" /> },
-  { href: "/", label: "Switch Account", icon: <RefreshCw className="w-5 h-5" /> },
+  { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
+  { href: "/admin-shops", label: "Shops", icon: <Store className="w-5 h-5" /> },
+  { href: "/admin-categories", label: "Categories", icon: <List className="w-5 h-5" /> },
+  { href: "/admin-vendors", label: "Vendors", icon: <Users className="w-5 h-5" /> },
+  { href: "/switch-account", label: "Switch Account", icon: <RefreshCw className="w-5 h-5" /> },
 ];
 
 export default function Sidebar() {

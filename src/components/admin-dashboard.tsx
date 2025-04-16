@@ -61,7 +61,7 @@ const Dashboard = () => {
   return (
     <AdminLayout>
       <div className="flex min-h-screen bg-gray-100">
-        <main className="p-6 w-full max-w-6xl mx-auto">
+        <main className="p-0 w-full max-w-6xl mx-auto">
           <h1 className="text-2xl font-bold text-teal-dark mb-6">Admin Dashboard</h1>
 
           {/* Stats Cards */}
@@ -133,7 +133,7 @@ const Dashboard = () => {
           </div>
         </main>
       </div>
-    </AdminLayout>
+      </AdminLayout>
   );
 };
 
